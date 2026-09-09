@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRGen - Generator QR Code Modern & Powerfull</title>
+    <meta name="description" content="Generate QR Code kustom dengan logo, warna, dan berbagai format data secara gratis dan cepat.">
+    
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <link href="https://unpkg.com/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style type="text/tailwindcss">
+    @layer theme {
+        :root {
+            --primary: #e8747c;
+            --primary-hover: #d45c65;
+            --secondary: #fef1f2;
+            --bg-main: #fdf5f5;
+            --card-bg: #ffffff;
+            --accent: #f5b8be;
+        }
+    }
+
+    @layer base {
+        body {
+            @apply bg-[var(--bg-main)] text-slate-900 font-['Inter',sans-serif];
+        }
+    }
+
+    @layer components {
+        .btn {
+            @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2;
+        }
+        .btn-primary {
+            @apply bg-[var(--primary)] text-white hover:bg-[var(--primary-hover)] shadow-md hover:shadow-lg active:scale-95;
+        }
+        .btn-outline {
+            @apply border border-rose-200 bg-white text-slate-700 hover:bg-rose-50 active:scale-95;
+        }
+        .input-field {
+            @apply w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-rose-300 focus:border-transparent outline-none transition-all;
+        }
+        .card {
+            @apply bg-[var(--card-bg)] rounded-2xl shadow-sm border border-slate-100 p-6;
+        }
+        .tab-btn {
+            @apply flex flex-col items-center gap-2 p-3 rounded-xl transition-all border border-transparent;
+        }
+        .tab-btn.active {
+            @apply bg-rose-50 border-rose-200 text-rose-600;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel" src="components/Header.js"></script>
+    <script type="text/babel" src="components/Sidebar.js"></script>
+    <script type="text/babel" src="components/QRDisplay.js"></script>
+    <script type="text/babel" src="components/InputForm.js"></script>
+    <script type="text/babel" src="utils/qrUtils.js"></script>
+    <script type="text/babel" src="app.js"></script>
+</body>
+</html>
