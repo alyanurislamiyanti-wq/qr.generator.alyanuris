@@ -175,7 +175,7 @@ function App() {
 
             <footer className="py-8 border-t bg-white mt-auto">
                 <div className="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
-                    &copy; 2026 QRGen Modern. Dibuat dengan presisi untuk kebutuhan digital Anda.
+                    Web ini dibuat langsung oleh Aisyah Nur Islamiyanti
                 </div>
             </footer>
         </div>

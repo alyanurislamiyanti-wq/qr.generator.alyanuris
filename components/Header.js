@@ -7,17 +7,11 @@ function Header() {
                         <div className="icon-qr-code text-white text-lg"></div>
                     </div>
                     <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-rose-400 to-rose-500 bg-clip-text text-transparent">
-                        QRGen<span className="text-slate-900">Pro</span>
+                        QRGen
                     </span>
                 </div>
                 
                 <nav className="hidden md:flex items-center gap-6">
-                    <a href="#" className="text-sm font-medium text-slate-600 hover:text-rose-500">Dokumentasi</a>
-                    <a href="#" className="text-sm font-medium text-slate-600 hover:text-rose-500">API</a>
-                    <button className="btn btn-outline text-sm">
-                        <div className="icon-user text-lg"></div>
-                        Masuk
-                    </button>
                 </nav>
 
                 <button className="md:hidden text-slate-600">
