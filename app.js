@@ -204,6 +204,29 @@ function App() {
                                 </div>
                             </div>
                             <div className="md:col-span-2">
+                                <label className="block text-sm font-medium text-slate-700 mb-2">Logo di tengah QR</label>
+                                <div className="flex flex-wrap items-center gap-3">
+                                    <label className="btn btn-outline cursor-pointer">
+                                        <div className="icon-upload"></div>
+                                        {qrData.logo ? 'Ganti logo' : 'Unggah logo'}
+                                        <input type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" className="hidden" onChange={(e) => {
+                                            const file = e.target.files && e.target.files[0];
+                                            if (!file) return;
+                                            const reader = new FileReader();
+                                            reader.onload = (event) => handleDataChange({logo: event.target.result});
+                                            reader.readAsDataURL(file);
+                                        }} />
+                                    </label>
+                                    {qrData.logo && (
+                                        <button onClick={() => handleDataChange({logo: null})} className="btn text-rose-600 hover:bg-rose-50">
+                                            <div className="icon-trash-2"></div>
+                                            Hapus logo
+                                        </button>
+                                    )}
+                                    <span className="text-xs text-slate-500">PNG transparan paling cocok untuk hasil bersih.</span>
+                                </div>
+                            </div>
+                            <div className="md:col-span-2">
                                 <label className="block text-sm font-medium text-slate-700 mb-2">Label bawah QR</label>
                                 <div className="flex gap-3">
                                     <input type="text" value={qrData.frame.label} maxLength="24" onChange={(e) => handleFrameChange({label: e.target.value})} className="input-field" placeholder="SCAN ME" />
@@ -271,7 +294,18 @@ function App() {
 
             <footer className="py-8 border-t bg-white mt-auto">
                 <div className="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
-                    Web ini dibuat langsung oleh Aisyah Nur Islamiyanti
+                    <p className="font-semibold text-slate-700">Dibuat oleh Aisyah Nur Islamiyanti</p>
+                    <p className="mt-1">Siswi kelas 12 ITCP 2 MAM 1 Paciran</p>
+                    <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs">
+                        <a href="mailto:alyanurislamiyanti@gmail.com" className="inline-flex items-center gap-1.5 hover:text-rose-600 transition-colors">
+                            <div className="icon-mail"></div>
+                            alyanurislamiyanti@gmail.com
+                        </a>
+                        <a href="https://instagram.com/alyanurisreal_1826" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-rose-600 transition-colors">
+                            <div className="icon-instagram"></div>
+                            @alyanurisreal_1826
+                        </a>
+                    </div>
                 </div>
             </footer>
         </div>
