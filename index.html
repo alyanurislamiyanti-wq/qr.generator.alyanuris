@@ -12,23 +12,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
     <link href="https://unpkg.com/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
     <style type="text/tailwindcss">
     @layer theme {
         :root {
-            --primary: #e8747c;
-            --primary-hover: #d45c65;
-            --secondary: #fef1f2;
-            --bg-main: #fdf5f5;
+            --primary: #ff6f91;
+            --primary-hover: #f4517a;
+            --secondary: #fff1f6;
+            --bg-main: #fff9f2;
             --card-bg: #ffffff;
-            --accent: #f5b8be;
+            --accent: #ffc857;
+            --mint: #b8f2e6;
+            --sky: #bde0fe;
+            --lavender: #d9c2ff;
         }
     }
 
     @layer base {
         body {
-            @apply bg-[var(--bg-main)] text-slate-900 font-['Inter',sans-serif];
+            @apply text-slate-900 font-['Nunito',sans-serif];
+            background-color: var(--bg-main);
+            background-image: radial-gradient(circle at 12% 8%, rgba(255, 200, 87, .18) 0 5px, transparent 6px), radial-gradient(circle at 86% 22%, rgba(184, 242, 230, .22) 0 7px, transparent 8px), linear-gradient(135deg, rgba(255, 111, 145, .06), transparent 42%), linear-gradient(315deg, rgba(189, 224, 254, .12), transparent 48%);
+            background-size: 34px 34px, 48px 48px, auto, auto;
         }
     }
 
@@ -37,22 +43,22 @@
             @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2;
         }
         .btn-primary {
-            @apply bg-[var(--primary)] text-white hover:bg-[var(--primary-hover)] shadow-md hover:shadow-lg active:scale-95;
+            @apply bg-[var(--primary)] text-white hover:bg-[var(--primary-hover)] shadow-[0_5px_0_#d94e71] hover:shadow-[0_3px_0_#d94e71] active:translate-y-1 active:shadow-none;
         }
         .btn-outline {
-            @apply border border-rose-200 bg-white text-slate-700 hover:bg-rose-50 active:scale-95;
+            @apply border-2 border-pink-200 bg-white text-slate-700 hover:bg-pink-50 hover:border-pink-300 active:scale-95;
         }
         .input-field {
-            @apply w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-rose-300 focus:border-transparent outline-none transition-all;
+            @apply w-full px-4 py-3 rounded-2xl border-2 border-orange-100 bg-white/90 focus:ring-2 focus:ring-pink-200 focus:border-pink-300 outline-none transition-all;
         }
         .card {
-            @apply bg-[var(--card-bg)] rounded-2xl shadow-sm border border-slate-100 p-6;
+            @apply bg-white/95 rounded-[1.5rem] shadow-[0_10px_30px_rgba(244,81,122,.08)] border-2 border-white p-6;
         }
         .tab-btn {
             @apply flex flex-col items-center gap-2 p-3 rounded-xl transition-all border border-transparent;
         }
         .tab-btn.active {
-            @apply bg-rose-50 border-rose-200 text-rose-600;
+            @apply bg-pink-50 border-pink-200 text-pink-600 shadow-sm;
         }
     }
     </style>
