@@ -99,10 +99,10 @@ function App() {
             <Sidebar />
             <main className="flex-1 xl:ml-64 max-w-7xl mx-auto w-full px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
                 <div className="lg:col-span-8 space-y-6">
-                    <div className="relative overflow-hidden bg-rose-50 rounded-3xl p-8 mb-8 border border-rose-100">
+                    <div className="relative overflow-hidden bg-gradient-to-br from-pink-100 via-yellow-50 to-sky-100 rounded-[2rem] p-8 mb-8 border-2 border-white shadow-[0_12px_30px_rgba(255,111,145,.12)]">
                         <div className="relative z-10">
                             <div className="text-center">
-                                <h1 className="text-3xl font-bold text-slate-800 mb-2">Halo, Selamat Datang! ✨</h1>
+                                <h1 className="text-3xl font-extrabold text-slate-800 mb-2">Halo, Selamat Datang! ✨</h1>
                                 <p className="text-slate-600">Buat QR Code cantikmu sekarang dengan mudah dan cepat.</p>
                             </div>
                         </div>
@@ -304,6 +304,10 @@ function App() {
                         <a href="https://instagram.com/alyanurisreal_1826" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-rose-600 transition-colors">
                             <div className="icon-instagram"></div>
                             @alyanurisreal_1826
+                        </a>
+                        <a href="https://www.aisyahnurislamiyanti.my.id/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-rose-600 transition-colors">
+                            <div className="icon-globe"></div>
+                            www.aisyahnurislamiyanti.my.id
                         </a>
                     </div>
                 </div>
