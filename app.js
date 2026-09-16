@@ -35,7 +35,19 @@ function App() {
         margin: 4,
         width: 1024,
         errorLevel: 'H',
-        logo: null
+        logo: null,
+        frame: {
+            style: 'classic',
+            color: '#e8747c',
+            background: '#fff7f7',
+            label: 'SCAN ME',
+            showLabel: true,
+            fontSize: 24,
+            infoPosition: 'bottom',
+            character: 'bunny',
+            radius: 28,
+            padding: 52
+        }
     });
 
     const [qrUrl, setQrUrl] = React.useState('');
@@ -65,6 +77,10 @@ function App() {
 
     const handleDataChange = (newData) => {
         setQrData(prev => ({ ...prev, ...newData }));
+    };
+
+    const handleFrameChange = (newFrame) => {
+        setQrData(prev => ({ ...prev, frame: { ...prev.frame, ...newFrame } }));
     };
 
     const saveToHistory = () => {
@@ -143,6 +159,86 @@ function App() {
                                         className="flex-1 px-3 py-2 border rounded-lg uppercase"
                                     />
                                 </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 rounded-lg bg-rose-50 flex items-center justify-center text-rose-500">
+                                <div className="icon-panels-top-left text-xl"></div>
+                            </div>
+                            <div>
+                                <h2 className="text-xl font-bold">Frame Estetik</h2>
+                                <p className="text-sm text-slate-500">Buat QR lebih menonjol dan siap dibagikan.</p>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div className="md:col-span-2">
+                                <label className="block text-sm font-medium text-slate-700 mb-2">Gaya frame</label>
+                                <div className="grid grid-cols-3 gap-2">
+                                    {[
+                                        { id: 'classic', label: 'Classic', icon: 'icon-square-dashed' },
+                                        { id: 'soft', label: 'Soft', icon: 'icon-scan-line' },
+                                        { id: 'midnight', label: 'Midnight', icon: 'icon-moon-star' }
+                                    ].map(style => (
+                                        <button key={style.id} onClick={() => handleFrameChange({ style: style.id })} className={`flex flex-col items-center gap-2 rounded-xl border p-3 text-sm font-semibold transition-all ${qrData.frame.style === style.id ? 'border-rose-300 bg-rose-50 text-rose-600 shadow-sm' : 'border-slate-200 text-slate-600 hover:border-rose-200 hover:bg-rose-50'}`}>
+                                            <div className={`${style.icon} text-xl`}></div>
+                                            {style.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 mb-2">Warna aksen</label>
+                                <div className="flex gap-2">
+                                    <input type="color" value={qrData.frame.color} onChange={(e) => handleFrameChange({color: e.target.value})} className="h-10 w-16 rounded cursor-pointer" />
+                                    <input type="text" value={qrData.frame.color} onChange={(e) => handleFrameChange({color: e.target.value})} className="flex-1 px-3 py-2 border rounded-lg uppercase" />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 mb-2">Warna frame</label>
+                                <div className="flex gap-2">
+                                    <input type="color" value={qrData.frame.background} onChange={(e) => handleFrameChange({background: e.target.value})} className="h-10 w-16 rounded cursor-pointer" />
+                                    <input type="text" value={qrData.frame.background} onChange={(e) => handleFrameChange({background: e.target.value})} className="flex-1 px-3 py-2 border rounded-lg uppercase" />
+                                </div>
+                            </div>
+                            <div className="md:col-span-2">
+                                <label className="block text-sm font-medium text-slate-700 mb-2">Label bawah QR</label>
+                                <div className="flex gap-3">
+                                    <input type="text" value={qrData.frame.label} maxLength="24" onChange={(e) => handleFrameChange({label: e.target.value})} className="input-field" placeholder="SCAN ME" />
+                                    <label className="flex shrink-0 items-center gap-2 rounded-xl border border-slate-200 px-3 text-sm text-slate-600">
+                                        <input type="checkbox" checked={qrData.frame.showLabel} onChange={(e) => handleFrameChange({showLabel: e.target.checked})} className="h-4 w-4 accent-rose-400" />
+                                        Tampilkan
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 mb-2">Posisi info</label>
+                                <select value={qrData.frame.infoPosition} onChange={(e) => handleFrameChange({infoPosition: e.target.value})} className="input-field">
+                                    <option value="top">Di atas QR</option>
+                                    <option value="bottom">Di bawah QR</option>
+                                    <option value="left">Di kiri QR</option>
+                                    <option value="right">Di kanan QR</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 mb-2">Karakter frame</label>
+                                <select value={qrData.frame.character} onChange={(e) => handleFrameChange({character: e.target.value})} className="input-field">
+                                    <option value="bunny">Kelinci imut</option>
+                                    <option value="bear">Beruang manis</option>
+                                    <option value="cat">Kucing ceria</option>
+                                    <option value="panda">Panda kecil</option>
+                                    <option value="none">Tanpa karakter</option>
+                                </select>
+                            </div>
+                            <div className="md:col-span-2">
+                                <label className="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"><span>Sudut frame</span><span className="text-rose-500">{qrData.frame.radius}px</span></label>
+                                <input type="range" min="8" max="48" value={qrData.frame.radius} onChange={(e) => handleFrameChange({radius: Number(e.target.value)})} className="w-full accent-rose-400" />
+                            </div>
+                            <div className="md:col-span-2">
+                                <label className="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"><span>Ukuran font info</span><span className="text-rose-500">{qrData.frame.fontSize}px</span></label>
+                                <input type="range" min="14" max="48" value={qrData.frame.fontSize} onChange={(e) => handleFrameChange({fontSize: Number(e.target.value)})} className="w-full accent-rose-400" />
                             </div>
                         </div>
                     </section>
