@@ -14,6 +14,8 @@ function QRDisplay({ qrUrl, qrData, onDownload }) {
         if (!qrUrl) return;
         const image = new Image();
         image.onload = () => {
+            const logoImage = qrData.logo ? new Image() : null;
+            const renderCanvas = () => {
             const canvas = document.createElement('canvas');
             const padding = frame.padding || 52;
             const infoPosition = frame.infoPosition || 'bottom';
@@ -46,6 +48,16 @@ function QRDisplay({ qrUrl, qrData, onDownload }) {
             const qrX = infoPosition === 'left' ? infoSize : 0;
             const qrY = infoPosition === 'top' ? infoSize : 0;
             context.drawImage(image, qrX + padding, qrY + padding, image.width, image.height);
+            if (logoImage && logoImage.naturalWidth) {
+                const logoSize = image.width * 0.22;
+                const logoX = qrX + padding + (image.width - logoSize) / 2;
+                const logoY = qrY + padding + (image.height - logoSize) / 2;
+                context.fillStyle = '#ffffff';
+                context.beginPath();
+                context.roundRect(logoX - 12, logoY - 12, logoSize + 24, logoSize + 24, 18);
+                context.fill();
+                context.drawImage(logoImage, logoX, logoY, logoSize, logoSize);
+            }
             if (hasInfo) {
                 context.fillStyle = style === 'midnight' ? '#ffffff' : accent;
                 context.textAlign = 'center';
@@ -70,9 +82,16 @@ function QRDisplay({ qrUrl, qrData, onDownload }) {
             }
             setFramedUrl(canvas.toDataURL('image/png'));
             setFramedJpgUrl(canvas.toDataURL('image/jpeg', 0.94));
+            };
+            if (logoImage) {
+                logoImage.onload = renderCanvas;
+                logoImage.src = qrData.logo;
+            } else {
+                renderCanvas();
+            }
         };
         image.src = qrUrl;
-    }, [qrUrl, frame]);
+    }, [qrUrl, frame, qrData.logo]);
 
     const downloadQR = (format) => {
         try {
